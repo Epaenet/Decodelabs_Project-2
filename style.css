@@ -1,0 +1,237 @@
+/* ================================================
+   1. RESET & BASE
+   ================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink: #1f2937;
+  --muted: #6b7280;
+  --bg: #ffffff;
+  --bg-alt: #f3f4f6;
+  --border: #e5e7eb;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+
+  --max-width: 1100px;
+  --gap-sm: 0.75rem;
+  --gap-md: 1.5rem;
+  --gap-lg: 3rem;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* Reusable container — keeps content centered with
+   consistent side padding at every screen width */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+h1, h2, h3 { line-height: 1.2; margin-bottom: 0.75rem; }
+
+/* ================================================
+   2. HEADER & RESPONSIVE NAVIGATION
+   ================================================ */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1rem;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Nav links laid out in a row with Flexbox */
+.nav-links {
+  display: flex;
+  gap: var(--gap-md);
+}
+
+.nav-links a {
+  font-weight: 500;
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+.nav-links a:hover { color: var(--primary); }
+
+/* The real checkbox stays invisible; only its
+   :checked state matters, read via CSS selectors below */
+.nav-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Hamburger icon — built from a <label>, hidden on desktop */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  width: 100%;
+  height: 2.5px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+/* When the checkbox is checked, morph the icon into an "X"
+   using the general sibling selector (~) */
+.nav-checkbox:checked ~ .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-checkbox:checked ~ .nav-toggle span:nth-child(2) { opacity: 0; }
+.nav-checkbox:checked ~ .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ================================================
+   3. HERO SECTION
+   ================================================ */
+.hero {
+  background: var(--bg-alt);
+  padding-block: var(--gap-lg);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.hero p {
+  max-width: 50ch;
+  margin-inline: auto;
+  color: var(--muted);
+  margin-bottom: var(--gap-md);
+}
+
+/* ================================================
+   4. BUTTONS
+   ================================================ */
+.btn {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  padding: 0.75rem 1.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+.btn:hover { background: var(--primary-dark); }
+
+/* ================================================
+   5. GENERAL SECTIONS
+   ================================================ */
+.section {
+  padding-block: var(--gap-lg);
+}
+
+.section.alt {
+  background: var(--bg-alt);
+}
+
+.section p { color: var(--muted); max-width: 70ch; }
+
+/* ================================================
+   6. CARD GRID
+   ================================================ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-md);
+  margin-top: var(--gap-md);
+}
+
+.card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: var(--gap-md);
+}
+
+.card h3 { font-size: 1.1rem; }
+.card p { color: var(--muted); font-size: 0.95rem; }
+
+/* ================================================
+   7. FOOTER
+   ================================================ */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding-block: var(--gap-md);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ================================================
+   8. MEDIA QUERIES
+   Core responsive logic, layered from large
+   screens down to small.
+   ================================================ */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Tablets / large phones — nav collapses into a dropdown */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    gap: var(--gap-md);
+    padding: var(--gap-md) 1.5rem;
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease;
+  }
+
+  /* Checking the hidden checkbox slides this panel into
+     view — no JavaScript involved */
+  .nav-checkbox:checked ~ .nav-links {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-toggle { display: flex; }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+  .card-grid { grid-template-columns: 1fr; }
+  .hero, .section { padding-block: var(--gap-md); }
+}

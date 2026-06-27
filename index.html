@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Layout — Project Submission</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER + NAVIGATION -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#home" class="logo">MySite</a>
+
+      <!-- Checkbox hack: this hidden checkbox is toggled by
+           clicking the label styled as a hamburger icon below.
+           CSS alone reads its checked state to open the menu. -->
+      <input type="checkbox" id="navCheck" class="nav-checkbox">
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <label for="navCheck" class="nav-toggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="container">
+        <h1>A Clean, Responsive Layout</h1>
+        <p>This page resizes and rearranges itself for mobile, tablet, and desktop screens using CSS media queries, Flexbox, and Grid.</p>
+        <a href="#about" class="btn">Learn More</a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2>About This Project</h2>
+        <p>This layout demonstrates the core building blocks of responsive web design: a navigation bar that collapses into a mobile menu, a flexible grid that reflows based on screen width, and consistent spacing that holds up at every size.</p>
+      </div>
+    </section>
+
+    <!-- SERVICES / CARDS -->
+    <section class="section alt" id="services">
+      <div class="container">
+        <h2>What's Inside</h2>
+
+        <div class="card-grid">
+          <div class="card">
+            <h3>Responsive Navigation</h3>
+            <p>The nav bar becomes a hamburger menu on smaller screens.</p>
+          </div>
+          <div class="card">
+            <h3>Flexible Grid Layout</h3>
+            <p>Cards rearrange from 3 columns to 2, then to 1, as the screen narrows.</p>
+          </div>
+          <div class="card">
+            <h3>Consistent Spacing</h3>
+            <p>Padding and margins are controlled with reusable CSS variables.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+        <h2>Get In Touch</h2>
+        <p>Have a question about this project? Reach out below.</p>
+        <a href="mailto:hello@example.com" class="btn">Contact Us</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 MySite. Built as a responsive design project submission.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
